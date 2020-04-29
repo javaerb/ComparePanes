@@ -1,0 +1,52 @@
+<idea-plugin>
+  <id>ComparePanes</id>
+  <name>Compare Panes</name>
+  <version>3.0</version>
+  <vendor email="plugins@cooperdooper.org">CooperDooper</vendor>
+
+  <description>
+    <![CDATA[Compare contents of 2 tabs or panes (including ones not visible at the same time)
+ from caret or selection start to end of file.
+ Found in Search menu.
+ Compares the last 2 panes that had focus, within a project.
+ Caret is moved to the first position in both panes that differs.]]>
+  </description>
+
+  <change-notes>
+    <![CDATA[Version 3.0: Updated after many years, works for 2020.1 and later, deprecations removed.]]>
+  </change-notes>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="201"/>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <application-components>
+    <component>
+      <implementation-class>com.liquidnet.ideaplugin.comparepanes.App</implementation-class>
+      <interface-class>com.liquidnet.ideaplugin.comparepanes.App</interface-class>
+    </component>
+  </application-components>
+  <project-components>
+    <component>
+      <implementation-class>com.liquidnet.ideaplugin.comparepanes.Proj</implementation-class>
+      <interface-class>com.liquidnet.ideaplugin.comparepanes.Proj</interface-class>
+    </component>
+  </project-components>
+
+  <actions>
+    <separator>
+      <add-to-group group-id="SearchMenu" anchor="last"/>
+    </separator>
+    <action id="Liquidnet.ComparePanes" class="org.cooperdooper.ideaplugin.comparepanes.CompareAction" text="_Compare Panes..." description="Compare contents of 2 panes, from selection start to end of text.">
+      <add-to-group group-id="SearchMenu" anchor="last"/>
+    </action>
+  </actions>
+
+</idea-plugin>
